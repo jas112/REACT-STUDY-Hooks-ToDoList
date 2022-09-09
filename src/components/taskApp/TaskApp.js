@@ -9,13 +9,20 @@ import NewTaskForm from "../newTaskForm/NewTaskForm";
 import TaskList from "../taskList/TaskList";
 
 function TaskApp(){
-    const initialTaskData = [
-        {id: 1, task: 'Finish React course.', completed: false},
-        {id: 2, task: 'Go to the grocery store.', completed: true},
-        {id: 3, task: 'Go to the comic store.', completed: false},
-    ];
+
+    const initialTaskData = JSON.parse(window.localStorage.getItem('tasks') || '[]');
+
+    // const initialTaskData = [
+    //     {id: 1, task: 'Finish React course.', completed: false},
+    //     {id: 2, task: 'Go to the grocery store.', completed: true},
+    //     {id: 3, task: 'Go to the comic store.', completed: false},
+    // ];
 
     const [ tasks, setTasks] = useState(initialTaskData);
+
+    useEffect(() => {
+        window.localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, [tasks]);
 
     const addTask = (newTask) => {
         let newTaskEntry = {

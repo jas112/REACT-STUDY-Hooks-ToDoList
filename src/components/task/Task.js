@@ -4,8 +4,9 @@ import { Delete, Edit } from "@mui/icons-material";
 import useToggle from "../../hooks/useToggle";
 import EditTaskForm from "../editTaskForm/EditTaskForm";
 
-function Task({id, idx, task, completed, removeTask, toggleTaskCompleted, editTask}){ 
+function Task({id, idx, dataLength, task, completed, removeTask, toggleTaskCompleted, editTask}){ 
     const [isEditing, toggleIsEditing] = useToggle(false);
+    const isNotLastElement = idx < dataLength-1;
 
     const handleDeleteClick = () => {
         console.log(`@task removing task with id... ${id}`);
@@ -25,9 +26,9 @@ function Task({id, idx, task, completed, removeTask, toggleTaskCompleted, editTa
 
     return (
         <>
-            <ListItem>
+            <ListItem style={{height: '74px'}}>
                 {isEditing ? (
-                    <EditTaskForm id={id} task={task} editTask={editTask} toggleIsEditing={toggleIsEditing} style={{width: '100%'}} />
+                    <EditTaskForm id={id} task={task} editTask={editTask} toggleIsEditing={toggleIsEditing} style={{width: "100%"}} />
                 ) : (
                     <>
                         <Checkbox tabIndex={-1} checked={completed} onChange={handleChange} />
@@ -46,7 +47,7 @@ function Task({id, idx, task, completed, removeTask, toggleTaskCompleted, editTa
                 )}
 
             </ListItem>
-            <Divider/>
+            { isNotLastElement ? (<Divider/>) : null}
         </>
 
     );

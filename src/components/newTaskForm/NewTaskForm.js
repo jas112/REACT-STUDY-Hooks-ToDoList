@@ -24,7 +24,7 @@ function NewTaskForm({addTask, props}){
     }
 
     return (
-        <Paper styles={{margin: '1rem 0',padding: '0 1rem',width: '600px',border: '1px solid green'}}>
+        <Paper style={{margin: '1rem 0',padding: '1rem 1rem'}}>
             <form onSubmit={handleSubmit}>
                 <TextField value={task} onChange={updateTask} margin='normal'label='Add New Task' fullWidth />
                 <Button variant="outlined" color="primary" type='submit' fullWidth>ADD TASK</Button>
