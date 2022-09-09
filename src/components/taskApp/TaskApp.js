@@ -1,16 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
+import useTaskState from "../../hooks/useTaskState";
 import { Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Grid from "@mui/material/Grid";
-import { v4 as uuidV4 } from "uuid";
 import NewTaskForm from "../newTaskForm/NewTaskForm";
 import TaskList from "../taskList/TaskList";
 
 function TaskApp(){
 
-    const initialTaskData = JSON.parse(window.localStorage.getItem('tasks') || '[]');
+    const initialTaskData = [{id: 0, task: 'Add tasks to this list', completed: false}];
+
+    const {tasks, addTask, removeTask, toggleTaskCompleted, editTask} = useTaskState(initialTaskData);
 
     // const initialTaskData = [
     //     {id: 1, task: 'Finish React course.', completed: false},
@@ -18,44 +20,44 @@ function TaskApp(){
     //     {id: 3, task: 'Go to the comic store.', completed: false},
     // ];
 
-    const [ tasks, setTasks] = useState(initialTaskData);
+    // const [ tasks, setTasks] = useState(initialTaskData);
 
-    useEffect(() => {
-        window.localStorage.setItem('tasks', JSON.stringify(tasks));
-    }, [tasks]);
+    // useEffect(() => {
+    //     window.localStorage.setItem('tasks', JSON.stringify(tasks));
+    // }, [tasks]);
 
-    const addTask = (newTask) => {
-        let newTaskEntry = {
-            id: uuidV4(),
-            task: newTask,
-            completed: false
-        };
+    // const addTask = (newTask) => {
+    //     let newTaskEntry = {
+    //         id: uuidV4(),
+    //         task: newTask,
+    //         completed: false
+    //     };
 
-        setTasks([...tasks, newTaskEntry]);
-    }
+    //     setTasks([...tasks, newTaskEntry]);
+    // }
 
-    const removeTask = (taskId) => {
-        console.log(`@TaskApp removing task with id... ${taskId}`);
-        let updatedTasks = tasks.filter(task => task.id !== taskId);
-        setTasks(updatedTasks);
-    };
+    // const removeTask = (taskId) => {
+    //     console.log(`@TaskApp removing task with id... ${taskId}`);
+    //     let updatedTasks = tasks.filter(task => task.id !== taskId);
+    //     setTasks(updatedTasks);
+    // };
 
-    const toggleTaskCompleted = (taskId) => {
-        console.log(`@TaskApp toggling task completed with id... ${taskId}`);
-        let updatedTasks = tasks.map(task => 
-            task.id === taskId ? {...task, completed: !task.completed} : task
-        );
-        setTasks(updatedTasks);
-    };
+    // const toggleTaskCompleted = (taskId) => {
+    //     console.log(`@TaskApp toggling task completed with id... ${taskId}`);
+    //     let updatedTasks = tasks.map(task => 
+    //         task.id === taskId ? {...task, completed: !task.completed} : task
+    //     );
+    //     setTasks(updatedTasks);
+    // };
 
-    const editTask = (taskId, taskUpdate) => {
-        console.log(`@TaskApp edititing task with id... ${taskId}`);
-        console.log(`@TaskApp edititing task with taskUpdate... ${taskUpdate}`);
-        let updatedTasks = tasks.map(task => 
-            task.id === taskId ? {...task, task: taskUpdate} : task
-        );
-        setTasks(updatedTasks);
-    };
+    // const editTask = (taskId, taskUpdate) => {
+    //     console.log(`@TaskApp edititing task with id... ${taskId}`);
+    //     console.log(`@TaskApp edititing task with taskUpdate... ${taskUpdate}`);
+    //     let updatedTasks = tasks.map(task => 
+    //         task.id === taskId ? {...task, task: taskUpdate} : task
+    //     );
+    //     setTasks(updatedTasks);
+    // };
 
     return (
         <Paper 
