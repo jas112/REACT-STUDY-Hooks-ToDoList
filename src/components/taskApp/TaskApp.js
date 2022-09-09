@@ -37,11 +37,13 @@ function TaskApp(){
     return (
         <Paper 
             style={{
-                padding: 0,
-                margin: 0,
+                padding: '0',
+                margin: '0',
                 height: '100vh',
-                backgroundColor: '#313131',
-                color: '#daa520'
+                border: '2px solid red',
+                textAlign: 'center'
+                // backgroundColor: '#313131',
+                // color: '#daa520'
             }}
             elevation={0}
         >
@@ -52,15 +54,14 @@ function TaskApp(){
                     </Typography>
                </Toolbar>
             </AppBar>
-            <div className="TaskApp">
-                <h1>TaskApp</h1>
-                <div className="TaskApp-console">
+
+            <Grid container justify='center'>
+                <Grid item xs={11} md={8} lg={4}>
                     <NewTaskForm addTask={addTask} />
-                </div>
-                <div className="TaskApp-console">
                     <TaskList tasks={tasks} removeTask={removeTask} />
-                </div>
-            </div>
+                </Grid>
+            </Grid>
+   
         </Paper>
     );
 }
