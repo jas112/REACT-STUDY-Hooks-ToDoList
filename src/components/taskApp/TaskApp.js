@@ -60,18 +60,18 @@ function TaskApp(){
     // };
 
     return (
-        <Paper 
+        <div 
             style={{
                 padding: '0',
                 margin: '0',
                 height: '100vh',
                 width: '100vw',
                 // border: '2px solid red',
-                textAlign: 'center'
-                // backgroundColor: '#313131',
+                textAlign: 'center',
+                backgroundColor: '#313131',
                 // color: '#daa520'
             }}
-            elevation={0}
+            // elevation={0}
         >
             <AppBar 
                 color="primary" 
@@ -89,8 +89,11 @@ function TaskApp(){
                </Toolbar>
             </AppBar>
 
-            <Grid container justify='center' style={{textAlign: 'center', marginTop: '1rem'}}>
-                <Grid item justify='center' xs={11} md={8} lg={4}>
+            <Grid container justifyContent='center' alignItems='center' style={{textAlign: 'center', marginTop: '1rem'}}>
+                {/* <Grid item xs={12} md={8} lg={4}>
+                    <NewTaskForm addTask={addTask} />
+                </Grid> */}
+                <Grid item xs={12} md={8} lg={4} style={{backgroundColor: '#17171750', padding: '.2rem 1rem', borderRadius: '10px'}}>
                     <NewTaskForm addTask={addTask} />
                     <TaskList 
                         tasks={tasks} 
@@ -101,7 +104,7 @@ function TaskApp(){
                 </Grid>
             </Grid>
    
-        </Paper>
+        </div>
     );
 }
 
