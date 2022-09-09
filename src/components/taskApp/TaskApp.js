@@ -29,9 +29,25 @@ function TaskApp(){
 
     const removeTask = (taskId) => {
         console.log(`@TaskApp removing task with id... ${taskId}`);
-        let rootTasks = [...tasks];
-        let newTasks = rootTasks.filter(task => task.id !== taskId);
-        setTasks(newTasks);
+        let updatedTasks = tasks.filter(task => task.id !== taskId);
+        setTasks(updatedTasks);
+    };
+
+    const toggleTaskCompleted = (taskId) => {
+        console.log(`@TaskApp toggling task completed with id... ${taskId}`);
+        let updatedTasks = tasks.map(task => 
+            task.id === taskId ? {...task, completed: !task.completed} : task
+        );
+        setTasks(updatedTasks);
+    };
+
+    const editTask = (taskId, taskUpdate) => {
+        console.log(`@TaskApp edititing task with id... ${taskId}`);
+        console.log(`@TaskApp edititing task with taskUpdate... ${taskUpdate}`);
+        let updatedTasks = tasks.map(task => 
+            task.id === taskId ? {...task, task: taskUpdate} : task
+        );
+        setTasks(updatedTasks);
     };
 
     return (
@@ -40,14 +56,23 @@ function TaskApp(){
                 padding: '0',
                 margin: '0',
                 height: '100vh',
-                border: '2px solid red',
+                width: '100vw',
+                // border: '2px solid red',
                 textAlign: 'center'
                 // backgroundColor: '#313131',
                 // color: '#daa520'
             }}
             elevation={0}
         >
-            <AppBar color="primary" position="static" style={{height: '64px', backgroundColor: '#daa520', color: '#212020'}}>
+            <AppBar 
+                color="primary" 
+                position="static" 
+                style={{
+                    height: '64px', 
+                    backgroundColor: '#daa520', 
+                    color: '#212020'
+                }}
+            >
                <Toolbar>
                     <Typography>
                         Hooks - ToDoList
@@ -55,10 +80,15 @@ function TaskApp(){
                </Toolbar>
             </AppBar>
 
-            <Grid container justify='center'>
-                <Grid item xs={11} md={8} lg={4}>
+            <Grid container justify='center' style={{textAlign: 'center', marginTop: '1rem'}}>
+                <Grid item justify='center' xs={11} md={8} lg={4}>
                     <NewTaskForm addTask={addTask} />
-                    <TaskList tasks={tasks} removeTask={removeTask} />
+                    <TaskList 
+                        tasks={tasks} 
+                        removeTask={removeTask} 
+                        toggleTaskCompleted={toggleTaskCompleted} 
+                        editTask={editTask} 
+                    />
                 </Grid>
             </Grid>
    
