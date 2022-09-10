@@ -7,6 +7,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Grid from "@mui/material/Grid";
 import NewTaskForm from "../newTaskForm/NewTaskForm";
 import TaskList from "../taskList/TaskList";
+// import BG from '../../assets/images/maxim-berg.jpg';
 
 function TaskApp(){
 
@@ -62,6 +63,8 @@ function TaskApp(){
     //     setTasks(updatedTasks);
     // };
 
+    {/* TaskApp Background image by Maxim Berg on Unsplash. */}
+
     return (
         <div 
             style={{
@@ -71,28 +74,37 @@ function TaskApp(){
                 width: '100vw',
                 textAlign: 'center',
                 backgroundColor: '#313131',
+                backgroundImage: `url(/images/maxim-berg-BG.jpg)`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'top center',
+                backgroundRepeat: 'no-repeat',
 
             }}
             elevation={0}
         >
+            {/* Background image by Maxim Berg on Unsplash. */}
             <AppBar 
                 color="primary" 
                 position="static" 
                 style={{
                     height: '64px', 
-                    backgroundColor: '#daa520', 
+                    backgroundColor: '#daa520',
+                    backgroundImage: `url(/images/maxim-berg-BG-AB.jpg)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'top center',
+                    backgroundRepeat: 'no-repeat', 
                     color: '#212020'
                 }}
             >
                <Toolbar>
-                    <Typography>
-                        Hooks - ToDoList
+                    <Typography variant="h5">
+                        Task List with Hooks
                     </Typography>
                </Toolbar>
             </AppBar>
-
+            
             <Grid container justifyContent='center' alignItems='center' style={{textAlign: 'center', marginTop: '1rem'}}>
-                <Grid item xs={12} md={8} lg={4} style={{backgroundColor: '#17171750', padding: '.2rem 1rem', borderRadius: '10px'}}>
+                <Grid item xs={12} md={8} lg={4} style={{backgroundColor: '#161616ff', padding: '.2rem 1rem', borderRadius: '10px'}}>
                     <NewTaskForm addTask={addTask} />
                     <TaskList 
                         tasks={tasks} 
